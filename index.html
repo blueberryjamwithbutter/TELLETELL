@@ -277,9 +277,9 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
           <div class="screen" id="screen">
             <div class="tube" id="tube">
               <div class="feed">
-                <div class="layer" data-k="v02" hidden><video id="v02" src="tapes/honeybox.mp4" preload="auto" playsinline muted></video></div>
-                <div class="layer" data-k="v04" hidden><video id="v04" src="tapes/empathabot.mp4" preload="auto" playsinline muted></video></div>
-                <div class="layer" data-k="v06" hidden><video id="v06" src="tapes/lalalulu.mp4" preload="auto" playsinline muted></video>
+                <div class="layer" data-k="v02" hidden><video id="v02" src="honeybox.mp4" preload="auto" playsinline muted></video></div>
+                <div class="layer" data-k="v04" hidden><video id="v04" src="empathabot.mp4" preload="auto" playsinline muted></video></div>
+                <div class="layer" data-k="v06" hidden><video id="v06" src="lalalulu.mp4" preload="auto" playsinline muted></video>
                   <div class="bug">WKXN 6</div>
                   <div class="lower" id="nLower"><b>RECOVERED AUDIO</b><span>ADVENTURE PARK · 2009</span></div></div>
                 <div class="layer news" data-k="news" hidden>
@@ -705,7 +705,7 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
 })();
 </script>
 
-<script type="importmap">{"imports":{"three":"./lib/three/three.module.js","three/addons/":"./lib/three/addons/"}}</script>
+<script type="importmap">{"imports":{"three":"./three.module.js","three/addons/environments/RoomEnvironment.js":"./RoomEnvironment.js","three/addons/geometries/RoundedBoxGeometry.js":"./RoundedBoxGeometry.js"}}</script>
 <script>
   /* if the 3D remote can't start (no WebGL, CDN blocked), fall back to the drawn one */
   window.__rcFail = () => { const w = document.getElementById('remote3d'); if (!w || w.hidden) return; w.hidden = true; document.getElementById('remoteCss').hidden = false; };
