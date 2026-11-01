@@ -48,7 +48,7 @@ body{
 .room{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
 
 /* ---------- stage: TV + remote on a shelf ---------- */
-.stage{display:grid;grid-template-columns:minmax(0,1fr);position:relative;width:min(100%, 920px, calc(60svh / .96));margin:0 auto}
+.stage{display:grid;grid-template-columns:minmax(0,1fr);position:relative;width:min(100%, 920px, calc(52svh / .96));margin:0 auto}
 .stage::after{
   content:"";grid-column:1/-1;height:22px;margin:-2px -5% 0;
   background:linear-gradient(var(--wood) 0 40%, var(--wood-dark));
@@ -734,7 +734,7 @@ try {
 
   /* ---------- body ---------- */
   // phones get a small, simple remote (power, numbers, volume, channel); computers get the full one
-  const COMPACT = narrow();
+  const COMPACT = true;   // the simple remote everywhere
   const W = COMPACT ? 5.4 : 4.8, L = COMPACT ? 10.6 : 17, D = 1.3, TOP = D / 2;
   const face = (() => {                 // printed face: plastic grain + brand
     const c = document.createElement('canvas'); c.width = 512; c.height = Math.round(512 * L / W);
@@ -797,10 +797,12 @@ try {
   const NUM = { color: '#a9a49b', hi: '#c2bdb4', ink: '#232226' };
   const DARK = { color: '#2c2b2e', hi: '#3a393c', ink: '#d8d3ca' };
   const SIMPLE = [
-    { id:'power', x:0, y:4.1, round:.62, ...DARK, glyph:'power', act:() => A().power(), ring:true },
+    { id:'power', x:-1.7, y:4.15, round:.52, ...DARK, glyph:'power', act:() => A().power(), ring:true },
+    { id:'input', x:1.7, y:4.15, w:1.3, h:.6, ...DARK, text:'INPUT', size:.42, act:() => A().source() },
     ...[['1','2','3'],['4','5','6'],['7','8','9']].flatMap((row, ri) => row.map((n, ci) =>
       ({ id:'n'+n, x:[-1.7,0,1.7][ci], y:[2.55,1.35,.15][ri], w:1.4, h:.95, ...NUM, text:n, size:.72, act:() => T('0'+n) }))),
     { id:'n0', x:0, y:-1.05, w:1.4, h:.95, ...NUM, text:'0', size:.72, act:() => T('AV') },
+    { id:'mute', x:0, y:-2.85, w:1.15, h:.62, ...RUBBER, glyph:'mute', act:() => A().mute() },
     { id:'vol', x:-1.7, y:-2.85, w:1.05, h:2.3, ...NUM, rocker:true, act:d => d > 0 ? A().volup() : A().voldn() },
     { id:'ch', x:1.7, y:-2.85, w:1.05, h:2.3, ...NUM, rocker:true, act:d => d > 0 ? A().chup() : A().chdn() },
   ];
